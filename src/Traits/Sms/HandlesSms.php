@@ -173,4 +173,21 @@ trait HandlesSms
             'DELETE'
         );
     }
+
+    /**
+     * @param string $destAddr
+     * 
+     * @param string $requestId
+     *
+     * @return Response
+     *
+     * @throws ConfigurationUnavailableException
+     */
+    public function smsDeliveryReport(string $destAddr, string $requestId): Response
+    {
+        return $this->call(
+            "https://dlrapi.beem.africa/public/v1/delivery-reports?dest_addr=$destAddr&request_id=$requestId",
+            'GET'
+        );
+    }
 }
