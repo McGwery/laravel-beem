@@ -175,6 +175,7 @@ trait HandlesSms
     }
 
     /**
+     * Delivery reports for sms can be accessed by requesting the status of each message using the below request. Delivery status should be checked 5mins or later after an sms has been submitted to the platform to allow for any delivery delays experienced with mobile network operators.
      * @param string $destAddr
      * 
      * @param string $requestId

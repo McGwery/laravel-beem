@@ -53,4 +53,16 @@ class SmsTest extends TestCase
 
         $this->assertTrue($request->successful());
     }
+
+    /** @test */
+    public function it_can_check_delivery_report()
+    {
+        $request = Beem::sms(
+            'Your verification code: 34990',
+            [['recipient_id' => (string) now()->timestamp, 'dest_addr' => '255753820520']]
+        );
+        sleep(60 * 10);
+        $request2 = Beem::smsDeliveryReport('255753820520', json_decode($request,true)['request_id']);
+        $this->assertTrue((json_decode($request2,true)['dest_addr']=='255753820520'));
+    }
 }
