@@ -186,9 +186,12 @@ trait HandlesSms
      */
     public function smsDeliveryReport(string $destAddr, string $requestId): Response
     {
+        $body = array('request_id' => $requestId,'dest_addr' => $destAddr);
+        //?dest_addr={$destAddr}&request_id={$requestId}
         return $this->call(
-            "https://dlrapi.beem.africa/public/v1/delivery-reports?dest_addr=$destAddr&request_id=$requestId",
-            'GET'
+            "https://dlrapi.beem.africa/public/v1/delivery-reports",
+            'GET',
+            $body
         );
     }
 }
